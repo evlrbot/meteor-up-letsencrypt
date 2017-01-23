@@ -35,6 +35,7 @@ set -e
 
   docker run -d -p 80:80 -p 443:443 \
     --name nginx \
+    --restart=always \
     -v /etc/nginx/conf.d  \
     -v /etc/nginx/vhost.d \
     -v /usr/share/nginx/html \
@@ -47,6 +48,7 @@ set -e
 
   docker run -d \
     --name nginx-gen \
+    --restart=always \
     --volumes-from nginx \
     -v $APP_PATH/tmp/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro \
     -v /var/run/docker.sock:/tmp/docker.sock:ro \
@@ -59,6 +61,7 @@ set -e
 
   docker run -d \
     --name letsencrypt-companion \
+    --restart=always \
     -e "NGINX_DOCKER_GEN_CONTAINER=nginx-gen" \
     --volumes-from nginx \
     -v $APP_PATH/config/certs:/etc/nginx/certs:rw \
