@@ -2,7 +2,7 @@
 
 > This version currently support <= Meteor 1.3.5.4.
 
-> For Meteor 1.4 support use *npm install -g mupx-letsencrypt@meteor14*
+> For Meteor 1.4 support use *npm install -g mupx-letsencrypt*
 
 ### Let's Encrypt support
 
@@ -10,7 +10,7 @@ This is [Meteor-Up mupx](https://github.com/arunoda/meteor-up/tree/mupx) fork, w
 
 #### Installation
 
-    npm install -g mupx-letsencrypt
+    npm install -g mupx-letsencrypt@meteor13
 
 #### Configuration
 To automatically get and renew Let's encrypt certificates for your app you will need to specify letsEncrypt object inside [mup.json](https://github.com/dtsepelev/meteor-up-letsencrypt/blob/mupx/example/mup.json) file
@@ -90,7 +90,7 @@ This version of Meteor Up is powered by [Docker](http://www.docker.com/) and it 
 
 ### Installation
 
-    npm install -g mupx-letsencrypt
+    npm install -g mupx-letsencrypt@meteor14
 
 ### Creating a Meteor Up Project
 
