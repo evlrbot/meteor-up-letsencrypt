@@ -21,7 +21,7 @@ docker rm -f letsencrypt-companion
 
 # We don't need to fail the deployment because of a docker hub downtime
 set +e
-docker pull meteorhacks/meteord:base
+docker pull abernix/meteord:base
 set -e
 
 
@@ -56,7 +56,7 @@ set -e
     -notify-sighup nginx -watch -only-exposed -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
 
   set +e
-  docker pull jrcs/letsencrypt-nginx-proxy-companion:latest
+  docker pull alastaircoote/docker-letsencrypt-nginx-proxy-companion:latest
   set -e
 
   docker run -d \
@@ -66,7 +66,7 @@ set -e
     --volumes-from nginx \
     -v $APP_PATH/config/certs:/etc/nginx/certs:rw \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
-    jrcs/letsencrypt-nginx-proxy-companion
+    alastaircoote/docker-letsencrypt-nginx-proxy-companion
 
   if [ "$USE_LOCAL_MONGO" == "1" ]; then
     docker run \
@@ -82,7 +82,7 @@ set -e
       -e "VIRTUAL_HOST=$LETSENCRYPT_HOST" \
       -e "LETSENCRYPT_HOST=$LETSENCRYPT_HOST" \
       -e "LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL" \
-      meteorhacks/meteord:base
+      abernix/meteord:base
   else
     docker run \
       -d \
@@ -95,7 +95,7 @@ set -e
       -e "VIRTUAL_HOST=$LETSENCRYPT_HOST" \
       -e "LETSENCRYPT_HOST=$LETSENCRYPT_HOST" \
       -e "LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL" \
-      meteorhacks/meteord:base
+      abernix/meteord:base
   fi
 <% } %>
 
@@ -111,7 +111,7 @@ set -e
       --hostname="$HOSTNAME-$APPNAME" \
       --env=MONGO_URL=mongodb://mongodb:27017/$APPNAME \
       --name=$APPNAME \
-      meteorhacks/meteord:base
+      abernix/meteord:base
   else
     docker run \
       -d \
@@ -121,7 +121,7 @@ set -e
       --hostname="$HOSTNAME-$APPNAME" \
       --env-file=$ENV_FILE \
       --name=$APPNAME \
-      meteorhacks/meteord:base
+      abernix/meteord:base
   fi
 <% } %>
 
