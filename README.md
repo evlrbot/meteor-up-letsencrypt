@@ -1,3 +1,14 @@
+# Dev
+
+git clone https://github.com/Stadio/meteor-up-letsencrypt.git
+cd meteor-up-letsencrypt
+npm install 
+cd ..
+sudo npm install -g meteor-up-letsencrypt
+cd deploy/mysitetodeploy
+mupx-letsencrypt setup
+mupx-letsencrypt deploy
+
 # Meteor Up X with free SSL certificates by Let's Encrypt
 
 > This version only supports Meteor 1.4 and higher.
